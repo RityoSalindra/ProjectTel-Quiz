@@ -10,7 +10,7 @@ import Penerimaanscreen from '../screen/Penerimaanscreen/Penerimaanscreen';
 import Hukumscreen from '../screen/Hukumscreen/Hukumscreen';
 import Macamscreen from '../screen/Macamscreen/Macamscreen';
 import { StatusBar } from 'react-native';
-import Testscreen from  '../screen/Testscreen/quiz';
+import Testscreen from  '../screen/Testscreen/Testscreen';
 
 export const LoginStack = createStackNavigator({
   Login: {

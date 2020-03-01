@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  Dimensions,
-  ScrollView,
-  TouchableOpacity
-} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import {AppRegistry,StyleSheet,Dimensions,ScrollView,TouchableOpacity} from 'react-native';
+import { Container, Header, Title, Content, Button, Body, Icon, Text, View, Right, Left } from 'native-base';
 import Animbutton from '../../animbutton'
+import styles from './styles'
 const { width, height } = Dimensions.get('window')
 let arrnew = []
 const jsonData = {"quiz" : {
@@ -123,18 +115,25 @@ export default class Quiz extends Component {
     const options = Object.keys(currentOptions).map( function(k) {
       return (  <View key={k} style={{margin:10}}>
  
-        <Animbutton countCheck={_this.state.countCheck} onColor={"green"} effect={"tada"} _onPress={(status) => _this._answer(status,k)} text={currentOptions[k]} />
+        <Animbutton countCheck={_this.state.countCheck} onColor={"#6971F7"} effect={""} _onPress={(status) => _this._answer(status,k)} text={currentOptions[k]} />
  
       </View>)
     });
  
     return (
-      <ScrollView style={{backgroundColor: '#F5FCFF',paddingTop: 10}}>
-      <View style={styles.container}>
- 
-      <View style={{ flex: 1,flexDirection: 'column', justifyContent: "space-between", alignItems: 'center',}}>
- 
-      <View style={styles.oval} >
+      <ScrollView style={{backgroundColor: '#FFFFFF',paddingTop: 10}}>
+      <Header style={styles.header}>
+          <Left>
+            <Button transparent onPress={this.back}>
+              <Icon name="arrow-back" style={styles.backArrow}/>
+            </Button>
+          </Left>
+          <Body>
+            <Title style={styles.title}>TelQuiz</Title>
+          </Body>
+          <Right/>
+        </Header>
+      <View  >
         <Text style={styles.welcome}>
           {this.state.question}
         </Text>
@@ -142,7 +141,7 @@ export default class Quiz extends Component {
         <View>
         { options }
         </View>
-        <View style={{flexDirection:"row"}}>
+        <View style={{alignItems: 'center'}}>
       {/*   <Button
           onPress={() => this.prev()}
           title="Prev"
@@ -150,39 +149,24 @@ export default class Quiz extends Component {
         />
         <View style={{margin:15}} />*/}
  
-        <TouchableOpacity onPress={() => this.next()} >
-          <View style={{paddingTop: 5,paddingBottom: 5, paddingRight: 20, paddingLeft: 20, borderRadius:10, backgroundColor:"green"}}>
-            <Icon name="md-arrow-round-forward" size={30} color="white" />
-          </View>
+        <TouchableOpacity 
+          onPress={() => this.next()}
+          style={{
+            backgroundColor:"#44B883", 
+            width: 280, 
+            height: 40, 
+            borderRadius: 5, 
+            alignItems: 'center', 
+            justifyContent: 'center',
+            alignContent: 'center'
+          }}
+        >
+          <Text style={{color:'white'}}>Next</Text>
         </TouchableOpacity >
- 
-        </View>
-        </View>
       </View>
       </ScrollView>
     );
   }
 }
  
-const styles = StyleSheet.create({
- 
-  oval: {
-  width: width * 90/100,
-  borderRadius: 20,
-  backgroundColor: 'green'
-  },
-  container: {
-    flex: 1,
-    alignItems: 'center'
-  },
-  welcome: {
-    fontSize: 20,
-    margin: 15,
-    color: "white"
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+
